@@ -15,14 +15,18 @@ export function TaskList() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
   function handleCreateNewTask() {
-    const newTasks: Task[] = tasks.slice();
-    newTasks.push({
-      id: Math.random(),
-      title: newTaskTitle,
-      isComplete: false,
-    });
-    setTasks(newTasks);
-    setNewTaskTitle('');
+    if (newTaskTitle == "")
+     console.log("this value can't be null")
+    else {
+      const newTasks: Task[] = tasks.slice();
+      newTasks.push({
+        id: Math.random(),
+        title: newTaskTitle,
+        isComplete: false,
+      });
+      setTasks(newTasks);
+      setNewTaskTitle('');
+    }
   }
 
   function handleToggleTaskCompletion(id: number) {
@@ -51,7 +55,7 @@ export function TaskList() {
             onChange={(e) => setNewTaskTitle(e.target.value)}
             value={newTaskTitle}
           />
-          <button type="submit" data-testid="add-task-button" onClick={handleCreateNewTask}>
+          <button type="submit" data-testid="add-task-button" onClick={handleCreateNewTask} >
             <FiCheckSquare size={16} color="#fff" />
           </button>
         </div>
